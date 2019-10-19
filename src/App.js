@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Scooter from "./Scooter";
+import HelmetZone from "./HelmetZone";
+import MobileApp from "./MobileApp";
+import "./navbar.css";
+
+class App extends React.Component {
+  state = {};
+  render() {
+    return (
+      <Router>
+        <div className="container">
+          <h2>Vogo Helmet Theft Protection Simulation</h2>
+          <nav className="navbar navbar-default navbar-static-top">
+            <ul className="nav nav-pills">
+              <li>
+                <NavLink to="/mobile-app" activeClassName="active">
+                  MobileApp
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/helmet-zone" activeClassName="active">
+                  HelmetZone
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/scooter" activeClassName="active">
+                  Scooter
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <hr />
+          <Switch>
+            <Route exact path="/mobile-app" component={MobileApp} />
+            <Route exact path="/helmet-zone" component={HelmetZone} />
+            <Route exact path="/scooter" component={Scooter} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
