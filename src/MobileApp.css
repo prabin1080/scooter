@@ -1,0 +1,34 @@
+.mobileApp {
+	text-align: center;
+	/*border: 1px solid grey;
+	padding: 20px;
+	border-radius: 10px;*/
+}
+
+.mobileBox {
+	margin-top: 50px;
+	border: 1px solid grey;
+	padding: 50px;
+	border-radius: 10px;
+	max-width: 300px;
+	min-height: 500px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.mobileBox input {
+	padding: 8px;
+	margin: 10px;
+}
+
+.rideSection {
+	margin-top: 100px;
+}
+
+.mobileBox .notification {
+	background-color: gold;
+	padding: 20px;
+	position: absolute;
+	width: 80%;
+	left: 5%;
+}
