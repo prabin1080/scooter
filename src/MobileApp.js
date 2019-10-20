@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import base_url from "./api_config";
 
 class MobileApp extends React.Component {
 	state = { qr_code: "", is_rented: true };
@@ -10,6 +12,19 @@ class MobileApp extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		console.log(this.state);
+		axios
+			.patch(base_url + "/zone/slot-qr/" + this.state.qr_code + "/", {
+				is_empty: false
+			})
+			.then(res => {
+				console.log(res);
+				this.setState({ qr_code: "" });
+				alert(res.data.message);
+			})
+			.catch(error => {
+				console.log(error);
+				alert("There is an error in updating zone");
+			});
 	};
 
 	handleStartRide = () => {

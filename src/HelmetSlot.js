@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import base_url from "./api_config";
 import "./HelmetSlot.css";
 
 const config = {
@@ -22,13 +24,34 @@ class HelmetSlot extends React.Component {
 	handleAttachClick = e => {
 		e.preventDefault();
 		console.log(this.state);
-		this.setState({ is_empty: false, is_locked: false });
+		axios
+			.patch(base_url + "/zone/slot/" + this.state.id + "/", {
+				is_empty: false
+			})
+			.then(res => {
+				console.log(res);
+				this.setState({ ...res.data });
+			})
+			.catch(error => {
+				console.log(error);
+				alert("There is an error in updating zone");
+			});
 	};
 
 	handleDetachClick = e => {
 		e.preventDefault();
-		console.log(this.state);
-		this.setState({ is_empty: true, is_locked: false });
+		axios
+			.patch(base_url + "/zone/slot/" + this.state.id + "/", {
+				is_empty: true
+			})
+			.then(res => {
+				console.log(res);
+				this.setState({ ...res.data });
+			})
+			.catch(error => {
+				console.log(error);
+				alert("There is an error in updating zone");
+			});
 	};
 
 	getButton = () => {

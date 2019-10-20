@@ -2,38 +2,45 @@ import React from "react";
 import axios from "axios";
 
 import HelmetSlot from "./HelmetSlot";
-import api_config from "./api_config";
+import base_url from "./api_config";
 
 class HelmetZone extends React.Component {
 	state = {
 		slots: [
-			{ id: 1, is_empty: false, is_locked: true },
-			{ id: 2, is_empty: true, is_locked: true },
-			{ id: 3, is_empty: true, is_locked: true },
-			{ id: 4, is_empty: false, is_locked: true },
-			{ id: 5, is_empty: false, is_locked: true },
-			{ id: 6, is_empty: false, is_locked: true },
-			{ id: 7, is_empty: false, is_locked: false },
-			{ id: 8, is_empty: false, is_locked: true },
-			{ id: 9, is_empty: false, is_locked: true },
-			{ id: 10, is_empty: false, is_locked: true }
+			// { id: 1, is_empty: false, is_locked: true },
+			// { id: 2, is_empty: true, is_locked: true },
+			// { id: 3, is_empty: true, is_locked: true },
+			// { id: 4, is_empty: false, is_locked: true },
+			// { id: 5, is_empty: false, is_locked: true },
+			// { id: 6, is_empty: false, is_locked: true },
+			// { id: 7, is_empty: false, is_locked: false },
+			// { id: 8, is_empty: false, is_locked: true },
+			// { id: 9, is_empty: false, is_locked: true },
+			// { id: 10, is_empty: false, is_locked: true }
 		]
 	};
 
-	componentDidMount() {
+	getUpdatedZone = () => {
 		axios
-			.get("https://jsonplaceholder.typicode.com/posts/1", {})
+			.get(base_url + "/zone/slots/", {})
 			.then(res => {
-				//on success
-				this.setState({
-					userMsg: res.data
-				});
+				console.log(res);
+				console.log(this);
+				this.setState({ slots: res.data });
 			})
 			.catch(error => {
+				console.log(error);
 				//on error
-				alert("There is an error in API call.");
+				alert("There is an error in updating zone");
 			});
-	}
+	};
+
+	componentDidMount = () => {
+		this.getUpdatedZone();
+		this.interval = setInterval(() => {
+			this.getUpdatedZone();
+		}, 5000);
+	};
 	render() {
 		return (
 			<div className="HelmetZone">
