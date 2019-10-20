@@ -78,6 +78,11 @@ class HelmetSlot extends React.Component {
 		}
 	};
 
+	componentWillReceiveProps(nextProps) {
+		console.log("received");
+		this.setState({ ...nextProps.slot });
+	}
+
 	render() {
 		const slot_config = config["is_empty"][this.state.is_empty];
 		return (
