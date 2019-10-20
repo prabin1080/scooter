@@ -31,7 +31,7 @@ class HelmetZone extends React.Component {
 			.catch(error => {
 				console.log(error);
 				//on error
-				alert("There is an error in updating zone");
+				console.log("There is an error in updating zone");
 			});
 	};
 
